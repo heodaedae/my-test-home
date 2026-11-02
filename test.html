@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>쿠팡 앱 실행 테스트</title>
+</head>
+<body>
+  <h2>쿠팡 앱 실행 테스트</h2>
+  <p>아래 버튼을 눌러 쿠팡 앱 실행을 테스트하세요.</p>
+
+  <a href="https://link.coupang.com/a/hltOLhmsKq">
+    기존 쿠팡 파트너스 링크
+  </a>
+
+  <script>
+    const partnerUrl =
+      "https://link.coupang.com/a/hltOLhmsKq";
+
+    const intentUrl =
+      "intent://link.coupang.com/a/hltOLhmsKq#Intent;" +
+      "scheme=https;" +
+      "package=com.coupang.mobile;" +
+      "S.browser_fallback_url=" +
+      encodeURIComponent(partnerUrl) +
+      ";end";
+
+    const button = document.createElement("p");
+    const link = document.createElement("a");
+
+    link.href = intentUrl;
+    link.textContent = "쿠팡 앱 실행 테스트";
+    link.style.fontSize = "20px";
+
+    button.appendChild(link);
+    document.body.appendChild(button);
+  </script>
+</body>
+</html>
