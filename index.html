@@ -5,105 +5,63 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SPORTS PICKS</title>
-
   <style>
     * { box-sizing: border-box; }
-
     body {
       margin: 0;
       min-height: 100vh;
-      background: #101522;
-      color: #f1f4fa;
+      background: #111827;
+      color: #f1f5f9;
       font-family: Arial, sans-serif;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       padding: 24px;
     }
-
-    .container {
+    .panel {
       width: 100%;
       max-width: 420px;
+      padding: 38px 24px;
       text-align: center;
-      padding: 42px 24px;
-      background: #192235;
-      border: 1px solid #293750;
-      border-radius: 16px;
+      background: #1f2937;
+      border: 1px solid #374151;
+      border-radius: 12px;
     }
-
     .brand {
-      color: #75a7ff;
+      color: #60a5fa;
       font-size: 13px;
+      font-weight: bold;
       letter-spacing: 3px;
+    }
+    h1 { font-size: 25px; margin: 22px 0 10px; }
+    p { color: #9ca3af; font-size: 14px; line-height: 1.7; }
+    .button {
+      display: block;
+      margin-top: 28px;
+      padding: 16px;
+      border-radius: 8px;
+      background: #3979ed;
+      color: white;
+      text-decoration: none;
       font-weight: bold;
     }
-
-    h1 {
-      font-size: 25px;
-      margin: 20px 0 12px;
-    }
-
-    p {
-      color: #aab5c8;
-      font-size: 14px;
-      line-height: 1.8;
-    }
-
-    .notice {
-      margin-top: 30px;
-      padding: 16px;
-      background: #111a2a;
-      border-radius: 10px;
-      color: #c4cede;
-      font-size: 13px;
-      line-height: 1.8;
-    }
-
     .footer {
-      margin-top: 28px;
-      color: #77849a;
+      margin-top: 25px;
+      color: #6b7280;
       font-size: 11px;
       letter-spacing: 1px;
     }
   </style>
 </head>
-
 <body>
-  <main class="container">
+  <main class="panel">
     <div class="brand">SPORTS PICKS</div>
-    <h1>SPORTS INFORMATION</h1>
-    <p>스포츠 분석 정보 및 픽 공유 페이지</p>
+    <h1>오늘의 픽 확인</h1>
+    <p>Today's Sports Information</p>
 
-    <div class="notice">
-      원활한 이용을 위해<br>
-      텔레그램 오른쪽 위 ⋮ 메뉴에서<br>
-      <strong>브라우저에서 열기</strong>를 선택해 주세요.
-    </div>
+    <a class="button" href="pick.html">PICK 확인하기</a>
 
-    <div class="footer">SPORTS PICKS</div>
+    <div class="footer">DAILY SPORTS INFORMATION</div>
   </main>
-
-  <script>
-    const partnerUrl =
-      "https://link.coupang.com/a/hltOLhmsKq";
-
-    const intentUrl =
-      "intent://link.coupang.com/a/hltOLhmsKq#Intent;" +
-      "scheme=https;" +
-      "package=com.coupang.mobile;" +
-      "S.browser_fallback_url=" +
-      encodeURIComponent(partnerUrl) +
-      ";end";
-
-    // 기존 테스트에서 성공했던 브라우저 기록 방식
-    history.pushState(
-      { returnToPage: true },
-      "",
-      location.pathname + "?returnPage=1"
-    );
-
-    // 페이지가 열린 뒤 쿠팡 앱 실행 시도
-    window.location.href = intentUrl;
-  </script>
 </body>
 </html>
