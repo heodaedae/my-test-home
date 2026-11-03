@@ -125,39 +125,40 @@
     </div>
   </main>
 
-  <script>
-    // 오늘 날짜 자동 표시
-    const now = new Date();
-    const dateText =
-      now.getFullYear() + "." +
-      String(now.getMonth() + 1).padStart(2, "0") + "." +
-      String(now.getDate()).padStart(2, "0");
+  
+<script>
+  // 오늘 날짜 자동 표시
+  const now = new Date();
+  const dateText =
+    now.getFullYear() + "." +
+    String(now.getMonth() + 1).padStart(2, "0") + "." +
+    String(now.getDate()).padStart(2, "0");
 
-    document.getElementById("today").textContent = dateText;
+  document.getElementById("today").textContent = dateText;
 
-    const partnerUrl = "https://link.coupang.com/a/hltOLhmsKq";
+  const partnerUrl = "https://link.coupang.com/a/hltOLhmsKq";
 
-    const intentUrl =
-      "intent://link.coupang.com/a/hltOLhmsKq#Intent;" +
-      "scheme=https;" +
-      "package=com.coupang.mobile;" +
-      "S.browser_fallback_url=" +
-      encodeURIComponent(partnerUrl) +
-      ";end";
+  const intentUrl =
+    "intent://link.coupang.com/a/hltOLhmsKq#Intent;" +
+    "scheme=https;" +
+    "package=com.coupang.mobile;" +
+    "S.browser_fallback_url=" +
+    encodeURIComponent(partnerUrl) +
+    ";end";
 
-    // 픽 페이지를 브라우저 방문 기록에 남김
-    history.pushState(
-      { returnToPicks: true },
-      "",
-      location.pathname + "?opened=1"
-    );
+  // 현재 페이지 방문 중 쿠팡 실행을 한 번만 시도
+  const launchKey = "coupangLaunched_" + location.pathname;
 
-    // 픽을 보여준 뒤 쿠팡 앱 실행 시도
+  if (!sessionStorage.getItem(launchKey)) {
+    sessionStorage.setItem(launchKey, "1");
+
     setTimeout(function () {
       document.getElementById("launchStatus").textContent =
         "쿠팡 앱으로 이동합니다...";
       window.location.href = intentUrl;
     }, 2000);
-  </script>
-</body>
-</html>
+  } else {
+    document.getElementById("launchStatus").textContent =
+      "픽 정보를 확인하고 있습니다.";
+  }
+</script>
