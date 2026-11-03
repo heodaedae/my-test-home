@@ -4,134 +4,81 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TODAY'S PICKS</title>
+  <title>오늘의 픽</title>
   <style>
-    * { box-sizing: border-box; }
-
     body {
-      margin: 0;
-      min-height: 100vh;
-      padding: 24px 16px;
-      background: #111827;
-      color: #f1f5f9;
       font-family: Arial, sans-serif;
+      background: #f5f6f8;
+      margin: 0;
+      padding: 24px 16px;
+      color: #222;
     }
 
     .container {
-      width: 100%;
-      max-width: 520px;
-      margin: 25px auto;
+      max-width: 480px;
+      margin: 0 auto;
     }
 
-    .brand {
-      color: #60a5fa;
-      font-size: 12px;
-      font-weight: bold;
-      letter-spacing: 3px;
+    h2 {
+      margin-bottom: 6px;
     }
 
-    h1 { font-size: 25px; margin: 12px 0 5px; }
-    .date { color: #9ca3af; font-size: 13px; }
-
-    .list { margin-top: 25px; }
+    .date {
+      color: #777;
+      margin-bottom: 24px;
+    }
 
     .pick {
-      padding: 16px;
+      background: white;
+      padding: 15px;
       margin-bottom: 10px;
-      background: #1f2937;
-      border: 1px solid #374151;
-      border-radius: 9px;
+      border-radius: 10px;
+      border: 1px solid #eee;
     }
 
     .number {
-      color: #60a5fa;
-      font-size: 12px;
+      color: #346aff;
       font-weight: bold;
-      margin-bottom: 8px;
+      margin-right: 8px;
     }
 
-    .match { font-size: 15px; font-weight: bold; }
-
-    .detail {
-      margin-top: 8px;
-      color: #9ca3af;
-      font-size: 13px;
-      line-height: 1.7;
+    button {
+      width: 100%;
+      margin-top: 20px;
+      padding: 16px;
+      background: #346aff;
+      color: white;
+      border: 0;
+      border-radius: 10px;
+      font-size: 17px;
+      font-weight: bold;
     }
 
-    .status {
-      margin-top: 22px;
-      padding: 14px;
-      background: #1f2937;
-      border-radius: 8px;
-      color: #9ca3af;
-      font-size: 12px;
+    #status {
       text-align: center;
-      line-height: 1.7;
+      color: #777;
+      font-size: 13px;
+      margin-top: 14px;
     }
   </style>
 </head>
-
 <body>
-  <main class="container">
-    <div class="brand">SPORTS PICKS</div>
-    <h1>TODAY'S PICKS</h1>
+  <div class="container">
+    <h2>오늘의 추천 픽</h2>
     <div class="date" id="today"></div>
 
-    <section class="list">
-      <article class="pick">
-        <div class="number">PICK 01</div>
-        <div class="match">경기명 입력</div>
-        <div class="detail">리그: 입력<br>선택: 입력<br>배당: 입력</div>
-      </article>
+    <div class="pick"><span class="number">01</span> 경기 정보 입력</div>
+    <div class="pick"><span class="number">02</span> 경기 정보 입력</div>
+    <div class="pick"><span class="number">03</span> 경기 정보 입력</div>
+    <div class="pick"><span class="number">04</span> 경기 정보 입력</div>
+    <div class="pick"><span class="number">05</span> 경기 정보 입력</div>
+    <div class="pick"><span class="number">06</span> 경기 정보 입력</div>
+    <div class="pick"><span class="number">07</span> 경기 정보 입력</div>
+    <div class="pick"><span class="number">08</span> 경기 정보 입력</div>
 
-      <article class="pick">
-        <div class="number">PICK 02</div>
-        <div class="match">경기명 입력</div>
-        <div class="detail">리그: 입력<br>선택: 입력<br>배당: 입력</div>
-      </article>
-
-      <article class="pick">
-        <div class="number">PICK 03</div>
-        <div class="match">경기명 입력</div>
-        <div class="detail">리그: 입력<br>선택: 입력<br>배당: 입력</div>
-      </article>
-
-      <article class="pick">
-        <div class="number">PICK 04</div>
-        <div class="match">경기명 입력</div>
-        <div class="detail">리그: 입력<br>선택: 입력<br>배당: 입력</div>
-      </article>
-
-      <article class="pick">
-        <div class="number">PICK 05</div>
-        <div class="match">경기명 입력</div>
-        <div class="detail">리그: 입력<br>선택: 입력<br>배당: 입력</div>
-      </article>
-
-      <article class="pick">
-        <div class="number">PICK 06</div>
-        <div class="match">경기명 입력</div>
-        <div class="detail">리그: 입력<br>선택: 입력<br>배당: 입력</div>
-      </article>
-
-      <article class="pick">
-        <div class="number">PICK 07</div>
-        <div class="match">경기명 입력</div>
-        <div class="detail">리그: 입력<br>선택: 입력<br>배당: 입력</div>
-      </article>
-
-      <article class="pick">
-        <div class="number">PICK 08</div>
-        <div class="match">경기명 입력</div>
-        <div class="detail">리그: 입력<br>선택: 입력<br>배당: 입력</div>
-      </article>
-    </section>
-
-    <div class="status" id="launchStatus">
-      픽 정보를 확인해 주세요.
-    </div>
-  </main>
+    <button id="openCoupang">쿠팡 앱 실행</button>
+    <div id="status">오늘의 픽을 확인하세요.</div>
+  </div>
 
   <script>
     const now = new Date();
@@ -141,41 +88,26 @@
       String(now.getMonth() + 1).padStart(2, "0") + "." +
       String(now.getDate()).padStart(2, "0");
 
-    const params = new URLSearchParams(location.search);
-    const launchKey = "coupangLaunched_" + location.pathname;
-
     const partnerUrl =
       "https://link.coupang.com/a/hltOLhmsKq";
 
-    const fallbackUrl =
-      location.origin + location.pathname + "?returned=1";
+    document.getElementById("openCoupang").addEventListener("click", function () {
+      history.pushState(
+        { step: "before-coupang" },
+        "",
+        location.href
+      );
 
-    const intentUrl =
-      "intent://link.coupang.com/a/hltOLhmsKq#Intent;" +
-      "scheme=https;" +
-      "package=com.coupang.mobile;" +
-      "S.browser_fallback_url=" +
-      encodeURIComponent(fallbackUrl) +
-      ";end";
+      document.getElementById("status").textContent =
+        "쿠팡 앱으로 이동합니다.";
 
-    // 쿠팡에서 돌아온 경우 재실행하지 않음
-    if (params.get("returned") === "1") {
-      sessionStorage.setItem(launchKey, "1");
-      document.getElementById("launchStatus").textContent =
+      window.location.href = partnerUrl;
+    });
+
+    window.addEventListener("popstate", function () {
+      document.getElementById("status").textContent =
         "픽 페이지로 돌아왔습니다.";
-    } else if (!sessionStorage.getItem(launchKey)) {
-      // 실행 전에 기록을 남겨 반복 실행 방지
-      sessionStorage.setItem(launchKey, "1");
-
-      setTimeout(function () {
-        document.getElementById("launchStatus").textContent =
-          "쿠팡 앱으로 이동합니다...";
-        location.href = intentUrl;
-      }, 2000);
-    } else {
-      document.getElementById("launchStatus").textContent =
-        "오늘의 픽을 확인해 주세요.";
-    }
+    });
   </script>
 </body>
 </html>
