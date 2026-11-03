@@ -7,6 +7,7 @@
   <title>TODAY'S PICKS</title>
   <style>
     * { box-sizing: border-box; }
+
     body {
       margin: 0;
       min-height: 100vh;
@@ -15,20 +16,25 @@
       color: #f1f5f9;
       font-family: Arial, sans-serif;
     }
+
     .container {
       width: 100%;
       max-width: 520px;
       margin: 25px auto;
     }
+
     .brand {
       color: #60a5fa;
       font-size: 12px;
       font-weight: bold;
       letter-spacing: 3px;
     }
+
     h1 { font-size: 25px; margin: 12px 0 5px; }
     .date { color: #9ca3af; font-size: 13px; }
+
     .list { margin-top: 25px; }
+
     .pick {
       padding: 16px;
       margin-bottom: 10px;
@@ -36,19 +42,23 @@
       border: 1px solid #374151;
       border-radius: 9px;
     }
+
     .number {
       color: #60a5fa;
       font-size: 12px;
       font-weight: bold;
       margin-bottom: 8px;
     }
+
     .match { font-size: 15px; font-weight: bold; }
+
     .detail {
       margin-top: 8px;
       color: #9ca3af;
       font-size: 13px;
       line-height: 1.7;
     }
+
     .status {
       margin-top: 22px;
       padding: 14px;
@@ -61,6 +71,7 @@
     }
   </style>
 </head>
+
 <body>
   <main class="container">
     <div class="brand">SPORTS PICKS</div>
@@ -68,8 +79,6 @@
     <div class="date" id="today"></div>
 
     <section class="list">
-      <!-- 아래 경기 내용은 필요할 때 직접 수정하면 됩니다. -->
-
       <article class="pick">
         <div class="number">PICK 01</div>
         <div class="match">경기명 입력</div>
@@ -120,45 +129,53 @@
     </section>
 
     <div class="status" id="launchStatus">
-      픽 정보를 확인해 주세요.<br>
-      잠시 후 쿠팡 앱 실행을 시도합니다.
+      픽 정보를 확인해 주세요.
     </div>
   </main>
 
-  
-<script>
-  // 오늘 날짜 자동 표시
-  const now = new Date();
-  const dateText =
-    now.getFullYear() + "." +
-    String(now.getMonth() + 1).padStart(2, "0") + "." +
-    String(now.getDate()).padStart(2, "0");
+  <script>
+    const now = new Date();
 
-  document.getElementById("today").textContent = dateText;
+    document.getElementById("today").textContent =
+      now.getFullYear() + "." +
+      String(now.getMonth() + 1).padStart(2, "0") + "." +
+      String(now.getDate()).padStart(2, "0");
 
-  const partnerUrl = "https://link.coupang.com/a/hltOLhmsKq";
+    const params = new URLSearchParams(location.search);
+    const launchKey = "coupangLaunched_" + location.pathname;
 
-  const intentUrl =
-    "intent://link.coupang.com/a/hltOLhmsKq#Intent;" +
-    "scheme=https;" +
-    "package=com.coupang.mobile;" +
-    "S.browser_fallback_url=" +
-    encodeURIComponent(partnerUrl) +
-    ";end";
+    const partnerUrl =
+      "https://link.coupang.com/a/hltOLhmsKq";
 
-  // 현재 페이지 방문 중 쿠팡 실행을 한 번만 시도
-  const launchKey = "coupangLaunched_" + location.pathname;
+    const fallbackUrl =
+      location.origin + location.pathname + "?returned=1";
 
-  if (!sessionStorage.getItem(launchKey)) {
-    sessionStorage.setItem(launchKey, "1");
+    const intentUrl =
+      "intent://link.coupang.com/a/hltOLhmsKq#Intent;" +
+      "scheme=https;" +
+      "package=com.coupang.mobile;" +
+      "S.browser_fallback_url=" +
+      encodeURIComponent(fallbackUrl) +
+      ";end";
 
-    setTimeout(function () {
+    // 쿠팡에서 돌아온 경우 재실행하지 않음
+    if (params.get("returned") === "1") {
+      sessionStorage.setItem(launchKey, "1");
       document.getElementById("launchStatus").textContent =
-        "쿠팡 앱으로 이동합니다...";
-      window.location.href = intentUrl;
-    }, 2000);
-  } else {
-    document.getElementById("launchStatus").textContent =
-      "픽 정보를 확인하고 있습니다.";
-  }
-</script>
+        "픽 페이지로 돌아왔습니다.";
+    } else if (!sessionStorage.getItem(launchKey)) {
+      // 실행 전에 기록을 남겨 반복 실행 방지
+      sessionStorage.setItem(launchKey, "1");
+
+      setTimeout(function () {
+        document.getElementById("launchStatus").textContent =
+          "쿠팡 앱으로 이동합니다...";
+        location.href = intentUrl;
+      }, 2000);
+    } else {
+      document.getElementById("launchStatus").textContent =
+        "오늘의 픽을 확인해 주세요.";
+    }
+  </script>
+</body>
+</html>
