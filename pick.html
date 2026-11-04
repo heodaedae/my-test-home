@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>오늘의 픽</title>
+  <title>오늘의 추천 픽</title>
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -62,6 +63,7 @@
     }
   </style>
 </head>
+
 <body>
   <div class="container">
     <h2>오늘의 추천 픽</h2>
@@ -80,54 +82,37 @@
     <div id="status">오늘의 픽을 확인하세요.</div>
   </div>
 
-  
-<script>
-  const now = new Date();
+  <script>
+    const now = new Date();
 
-  document.getElementById("today").textContent =
-    now.getFullYear() + "." +
-    String(now.getMonth() + 1).padStart(2, "0") + "." +
-    String(now.getDate()).padStart(2, "0");
+    document.getElementById("today").textContent =
+      now.getFullYear() + "." +
+      String(now.getMonth() + 1).padStart(2, "0") + "." +
+      String(now.getDate()).padStart(2, "0");
 
-  const partnerUrl =
-    "https://link.coupang.com/a/hltOLhmsKq";
+    const partnerUrl =
+      "https://link.coupang.com/a/ioZXNblZgO";
 
-  const launchKey = "coupang_auto_launched";
+    document.getElementById("openCoupang").addEventListener(
+      "click",
+      function () {
+        history.pushState(
+          { step: "before-coupang" },
+          "",
+          location.href
+        );
 
-  function openCoupang() {
-    history.pushState(
-      { step: "before-coupang" },
-      "",
-      location.href
+        document.getElementById("status").textContent =
+          "쿠팡 앱으로 이동합니다.";
+
+        window.location.href = partnerUrl;
+      }
     );
 
-    document.getElementById("status").textContent =
-      "쿠팡 앱으로 이동합니다.";
-
-    window.location.href = partnerUrl;
-  }
-
-  // 쿠팡에서 돌아왔을 때 자동 실행이 반복되지 않도록 확인
-  window.addEventListener("popstate", function () {
-    document.getElementById("status").textContent =
-      "픽 페이지로 돌아왔습니다.";
-  });
-
-  // 이번 브라우저 탭에서 아직 실행하지 않았다면 2초 후 실행
-  if (!sessionStorage.getItem(launchKey)) {
-    setTimeout(function () {
-      sessionStorage.setItem(launchKey, "1");
-      openCoupang();
-    }, 2000);
-  } else {
-    document.getElementById("status").textContent =
-      "오늘의 픽을 확인하세요.";
-  }
-
-  // 자동 실행이 차단된 경우를 위한 수동 실행 버튼
-  document.getElementById("openCoupang").addEventListener(
-    "click",
-    openCoupang
-  );
-</script>
-
+    window.addEventListener("popstate", function () {
+      document.getElementById("status").textContent =
+        "픽 페이지로 돌아왔습니다.";
+    });
+  </script>
+</body>
+</html>
